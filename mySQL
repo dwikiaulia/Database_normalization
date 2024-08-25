@@ -15,7 +15,7 @@ CREATE TABLE orders_unnormalized (
     shipment_date DATE
 );
 
-#Breakdown to create order table
+#Create first normal form (1NF) for order table
 CREATE TABLE orders_1nf (
     order_id INT PRIMARY KEY,
     order_date DATE,
@@ -27,7 +27,7 @@ CREATE TABLE orders_1nf (
     shipment_date DATE
 );
 
-#Breakdown to create order_product table
+#Create first normal form (1NF) for order product table
 CREATE TABLE order_products_1nf (
     order_id INT,
     product_id INT,
@@ -38,7 +38,7 @@ CREATE TABLE order_products_1nf (
     FOREIGN KEY (order_id) REFERENCES orders_1nf(order_id)
 );
 
-#Breakdown to create customer table
+#Create second normal form (2NF) for customer table
 CREATE TABLE customers_2nf (
     customer_id INT PRIMARY KEY,
     customer_name VARCHAR(255),
@@ -46,14 +46,14 @@ CREATE TABLE customers_2nf (
     shipping_address VARCHAR(255)
 );
 
-#Breakdown to create normalize product table
+#Create second normal form (2NF) for product table
 CREATE TABLE products_2nf (
     product_id INT PRIMARY KEY,
     product_name VARCHAR(255),
     product_price DECIMAL(10, 2)
 );
 
-#Breakdown to create 2nd normalize order table
+#Create second normal form (2NF) for order table
 CREATE TABLE orders_2nf (
     order_id INT PRIMARY KEY,
     order_date DATE,
@@ -63,7 +63,7 @@ CREATE TABLE orders_2nf (
     FOREIGN KEY (customer_id) REFERENCES customers_2nf(customer_id)
 );
 
-#Breakdown to create 2nd normalize order product table
+#Create second normal form (2NF) for order product table
 CREATE TABLE order_products_2nf (
     order_id INT,
     product_id INT,
